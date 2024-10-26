@@ -1,5 +1,5 @@
 # static files
-# static.py
+static.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
