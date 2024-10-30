@@ -9,4 +9,8 @@ I've also written a file called `config.py` which will setup your static.py file
 ## youTrack Integration
 This repo has been integrated with youTrack to allow developers to reference specific issues and use a set of predefined commands to update them over on youTrack. This means if you add the commit message `[commit message text] #issueID [command 1] [command 2] ... [command n]
 [issue comment text]
-...` following that format you wont have to interact with the issue directly on youTrack. Reference command syntax here for more information on how to use: [Command Syntax](https://www.jetbrains.com/help/youtrack/server/apply-commands-in-vcs-commits.html#vcs-commit-command-syntax)
+...`
+
+You will need to add your GitHub username to the VCS Usernames Field in your youTrack user profile.
+
+ following that format you wont have to interact with the issue directly on youTrack. Reference command syntax here for more information on how to use: [Command Syntax](https://www.jetbrains.com/help/youtrack/server/apply-commands-in-vcs-commits.html#vcs-commit-command-syntax)
