@@ -50,7 +50,8 @@ def get_fhfa_data():
     soup:bs4.BeautifulSoup = get_page_data(FHFA_URL)
     a_tags:list[bs4.element.Tag] = soup.find_all('a')
     for a_tag in a_tags:
-        if a_tag['href'].endswith(('.pdf', '.zip')):
+        url_stub:str = a_tag['href']
+        if url_stub.endswith(('.pdf', '.zip')):
             filename = a_tag['href'].split('/')[-1]
             get_file(url = f"https://www.fhfa.gov/{a_tag['href']}", dest_directory = DATA_DIR,
                     filename=filename)

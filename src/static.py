@@ -10,4 +10,4 @@ For example:
 
 DONT PUSH THIS FILE ONCE YOU'VE FILLED IT OUT, ITS ON THE GITIGNORE BUT BE VIGILANT"""
 
-DATA_DIR: str = ""
+DATA_DIR: str = "/home/mango/data/CS504"
