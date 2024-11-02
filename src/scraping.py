@@ -3,7 +3,6 @@ import requests
 import warnings
 import zipfile
 import glob
-from tqdm import tqdm
 from bs4 import BeautifulSoup
 from src.static import DATA_DIR
 
