@@ -39,6 +39,7 @@ unit_data_dict = {
     }
 
 loan_data_mapper = {
+    'year': lambda x: x,
     'enterprise_flag': lambda x: loan_data_dict['enterprise_flag'].get(x, x),
     'record_number': lambda x: x,
     'census_tract_2020': lambda x: loan_data_dict['census_tract_2020'].get(x, x),
@@ -52,6 +53,7 @@ loan_data_mapper = {
 }
 
 unit_data_mapper = {
+    'year': lambda x: x,
     'enterprise_flag' : lambda x: unit_data_dict['enterprise_flag'].get(x, x),
     'record_number': lambda x: x,
     'num_bedrooms': lambda x: unit_data_dict['num_bedrooms'].get(x, x),

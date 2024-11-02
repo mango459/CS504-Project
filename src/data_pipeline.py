@@ -5,12 +5,15 @@ from src.static import DATA_DIR
 import src.datamappers as datamappers
 
 def clean_data(file_loc:str) -> pd.core.frame.DataFrame:
+    match = re.search(r'\d{4}', file_loc)
+    yr = match.group()
     with open(file_loc, 'r') as f:
         data = f.read()
     str_data_clean: str = re.sub(r'[^\S\n]+', ' ', data)
     list_data: list[str] = str_data_clean.split('\n')
     list_list_data : list[list[str]] = [x.split(' ') for x in list_data]
     df = pd.DataFrame(list_list_data, columns=[x+1 for x in range(len(list_list_data[0]))])
+    df['year'] = pd.Series([yr for x in df.index])
     return df
 
 def map_values(data: pd.core.frame.DataFrame, column_mapper:dict = None, data_mapper:dict = None):
@@ -47,4 +50,3 @@ def data_pipeline(file_keyword):
 
 
 
-        
