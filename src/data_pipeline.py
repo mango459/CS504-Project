@@ -5,7 +5,7 @@ from src.static import DATA_DIR
 import src.datamappers as datamappers
 
 def clean_data(file_loc:str) -> pd.core.frame.DataFrame:
-    match = re.search(r'\d{4}', file_loc)
+    match = re.search(r'\d{4}', file)
     yr = match.group()
     with open(file_loc, 'r') as f:
         data = f.read()
