@@ -1,10 +1,10 @@
-loan_column_mapper = {1: 'enterprise_flag', 2: 'record_number', 3: 'census_tract_2020',
-                 4: 'tract_income_ratio', 5: 'affordability_cat', 6: 'date_of_mortgage_note',
-                 7: 'purpose_of_loan', 8: 'type_of_seller', 9: 'federal_guarantee',
-                   10: 'tot_num_units'}
+loan_column_mapper = {0: 'enterprise_flag', 1: 'record_number', 2: 'census_tract_2020',
+                 3: 'tract_income_ratio', 4: 'affordability_cat', 5: 'date_of_mortgage_note',
+                 6: 'purpose_of_loan', 7: 'type_of_seller', 8: 'federal_guarantee',
+                   9: 'tot_num_units', 10:'underserved_areas_ind'}
 
-unit_column_mapper = {1: 'enterprise_flag', 2: 'record_number', 3: 'num_bedrooms',
-                 4: 'num_units', 5: 'affordability_level', 6: 'tenant_income_ind'}
+unit_column_mapper = {0: 'enterprise_flag', 1: 'record_number', 2: 'num_bedrooms',
+                 3: 'num_units', 4: 'affordability_level', 5: 'tenant_income_ind'}
 
 loan_data_dict = {
     'enterprise_flag': {'1':'fannie', '2':'freddie'},

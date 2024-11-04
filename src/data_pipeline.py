@@ -6,15 +6,20 @@ import src.datamappers as datamappers
 
 def clean_data(file_loc:str) -> pd.core.frame.DataFrame:
     match = re.search(r'\d{4}', file_loc)
-    yr = match.group()
+    if match.group():
+        yr = match.group()
+    else:
+        raise RuntimeError(f'no year detected in filename {file_loc}')
     with open(file_loc, 'r') as f:
         data = f.read()
     str_data_clean: str = re.sub(r'[^\S\n]+', ' ', data)
     list_data: list[str] = str_data_clean.split('\n')
     list_list_data : list[list[str]] = [x.split(' ') for x in list_data]
-    df = pd.DataFrame(list_list_data, columns=[x+1 for x in range(len(list_list_data[0]))])
-    df = df.dropna()
-    df['year'] = pd.Series([yr for x in df.index])
+    df = pd.DataFrame(
+        list_list_data,
+          )
+    df = df.dropna().drop_duplicates()
+    df['year'] = [yr for x in list(range(df.shape[0]))]
     return df
 
 def map_values(data: pd.core.frame.DataFrame, column_mapper:dict = None, data_mapper:dict = None):
@@ -47,8 +52,8 @@ def data_pipeline(file_keyword):
             mapped_dfs.append(mapped_data)
             raw_data = map_values(data, datamappers.loan_column_mapper)
             raw_dfs.append(raw_data)
-    return (pd.concat(mapped_dfs, axis=0).drop_duplicates(),
-               pd.concat(raw_dfs, axis=0).drop_duplicates())
+    return (pd.concat(mapped_dfs, axis=0),
+            pd.concat(raw_dfs, axis=0))
 
 
 
