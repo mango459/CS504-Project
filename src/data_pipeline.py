@@ -13,6 +13,7 @@ def clean_data(file_loc:str) -> pd.core.frame.DataFrame:
     list_data: list[str] = str_data_clean.split('\n')
     list_list_data : list[list[str]] = [x.split(' ') for x in list_data]
     df = pd.DataFrame(list_list_data, columns=[x+1 for x in range(len(list_list_data[0]))])
+    df = df.dropna()
     df['year'] = pd.Series([yr for x in df.index])
     return df
 
@@ -46,7 +47,9 @@ def data_pipeline(file_keyword):
             mapped_dfs.append(mapped_data)
             raw_data = map_values(data, datamappers.loan_column_mapper)
             raw_dfs.append(raw_data)
-    return (pd.concat(mapped_dfs, axis=0), pd.concat(raw_dfs, axis=0))
+    return (pd.concat(mapped_dfs, axis=0).drop_duplicates(),
+               pd.concat(raw_dfs, axis=0).drop_duplicates())
+
 
 
 
