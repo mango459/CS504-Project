@@ -5,7 +5,7 @@ from src.data_pipeline import data_pipeline
 from src.static import DATA_DIR
 
 if __name__ == '__main__':
-    config.update_static()
+    #config.update_static()
     get_fhfa_data()
     loan_data, raw_loan_data = data_pipeline('loan')
     unit_data, raw_unit_data = data_pipeline('unit')
