@@ -38,7 +38,7 @@ df.tail()
 
 # Update target variable to 'tract_income_ratio'
 target_variable = 'tract_income_ratio'
-independent_variables = ['num_bedrooms', 'num_units', 'tract_income_ratio', 'tot_num_units']
+independent_variables = ['num_bedrooms', 'num_units', 'tot_num_units']
 
 # Check the correlation between the target variable and independent variables
 correlation_matrix = df[independent_variables + [target_variable]].corr()
