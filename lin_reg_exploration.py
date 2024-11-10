@@ -38,7 +38,7 @@ df.tail()
 
 # Update target variable to 'tract_income_ratio'
 target_variable = 'tract_income_ratio'
-independent_variables = ['num_bedrooms', 'num_units', 'tot_num_units']
+independent_variables = ['num_bedrooms', 'num_units', 'tract_income_ratio', 'tot_num_units']
 
 # Check the correlation between the target variable and independent variables
 correlation_matrix = df[independent_variables + [target_variable]].corr()
@@ -70,22 +70,10 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 mse, r2
+# MSE is an extremely small value, essentially close to zero.
+# It indicates that the model's predictions are almost identical to the
+# actual values in the test set.
+# overfitting or perfect collinearity between features and the target?
 
-
-# Prepare the data for regression
-y = df[target_variable]  # New target variable
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Initialize the Linear Regression model
-model.fit(X_train, y_train)
-
-# Make predictions on the test set
-y_pred = model.predict(X_test)
-
-# Calculate performance metrics
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-
-mse, r2
+# R2 -- model explains 100% of the variance in the target variab,
+# a high correlation between the independent variables and the target
