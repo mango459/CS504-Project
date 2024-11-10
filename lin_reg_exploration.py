@@ -29,10 +29,10 @@ df.drop('underserved_areas_ind', axis=1, inplace=True)
 # Check the last few rows of the data
 df.tail()
 
-# The columns with numerical data (like num_units, num_bedrooms,
-# and tract_income_ratio) seem like potential candidates for
-# independent variables in a linear regression model.
-# However, we need to ensure that these variables are
+# The columns with numerical data (like num_units, num_bedrooms, 
+# and tract_income_ratio) seem like potential candidates for 
+# independent variables in a linear regression model. 
+# However, we need to ensure that these variables are 
 # continuous and not categorical.
 
 
@@ -70,9 +70,9 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 mse, r2
-# MSE is an extremely small value, essentially close to zero.
-# It indicates that the model's predictions are almost identical to the
-# actual values in the test set.
+# MSE is an extremely small value, essentially close to zero. 
+# It indicates that the model's predictions are almost identical to the 
+# actual values in the test set. 
 # overfitting or perfect collinearity between features and the target?
 
 # R2 -- model explains 100% of the variance in the target variab,
