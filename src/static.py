@@ -10,4 +10,4 @@ For example:
 
 DONT PUSH THIS FILE ONCE YOU'VE FILLED IT OUT, ITS ON THE GITIGNORE BUT BE VIGILANT"""
 
-DATA_DIR: str = "/home/mango/data/CS504"
+DATA_DIR: str = "/Users/andreapaloschavez/Library/CloudStorage/OneDrive-Avantus/CS504/python"
