@@ -10,32 +10,33 @@ loan_data_dict = {
     'enterprise_flag': {'1':'fannie', '2':'freddie'},
     'census_tract_2020': {'1': '<10%', '2': '>=10%, <30%', '3':'>=30% <100%', '4':'missing'},
     'tract_income_ratio': {'1': '>0, <=80%', '2': '>10, <=120%', '3': '>120%', '4': 'missing'},
-    'affordability_cat': {'1' :  '>=20% of the units in the property are affordable at or below'+\
-                          '50% of Area Median Income (AMI), and <40% are affordable at or below'+\
-                          '60% AMI', '2' : '<20% and >=40%','3' : '>=20% and >=40%',
-                          '4' : '<20% and <40%', '8' : 'Not available', '9' : 'Not eligible',
-                          '0' :  'Missing'},
-    'date_of_mortgage_note': {'1' : 'originated in same year as acquired',
-                              '2' : 'originated prior to calendar year of acquisition',
-                              '9' : 'missing'},
-    'purpose_of_loan': {'1' : 'Purchase', '2' : 'Refinancing (all types)', '3' : 'New construction',
-                        '4' : 'Home Improvement/Rehabilitation',
-                        '9' : 'Not applicable/not available'},
-    'type_of_seller': {'1' : 'Mortgage Company', '2' : 'Savings Association Insurance Fund (SAIF)'+\
-                       '- or Bank Insurance Fund (BIF)-insured depository institution',
-                       '3' : 'NCUA-insured Credit Union', '4' : 'Other'},
-    'federal_guarantee': {'1' : 'Yes (has some type of Federal Guarantee)', '2' : 'No',
-                          '3' : 'FHA Risk Sharing', '9' : 'Not available'},
-    'tot_num_units': {'1' : '5 to 24 units', '2' : '25 to 50', '3' : '51 to 99', '4' : '100 to 149',
-                      '5' : 'over 149', '9' : 'Unknown'}
+    'affordability_cat': {'1' :  '>=20%, <40%',
+                          '2' : '<20%, >=40%',
+                          '3' : '>=20%, >=40%',
+                          '4' : '<20%, <40%',
+                          '8' : 'NaN',
+                          '9' : 'NaN',
+                          '0' :  'NaN'},
+    'date_of_mortgage_note': {'1' : 'same year as acquired',
+                              '2' : 'prior to year aquired',
+                              '9' : 'NaN'},
+    'purpose_of_loan': {'1' : 'purchase', '2' : 'refinance', '3' : 'new build',
+                        '4' : 'improvement/rehab',
+                        '9' : 'NaN'},
+    'type_of_seller': {'1' : 'mortgage_company', '2' : 'SAIF or BIF',
+                       '3' : 'credit_union', '4' : 'Other'},
+    'federal_guarantee': {'1' : 'yes', '2' : 'no',
+                          '3' : 'FHA', '9' : 'NaN'},
+    'tot_num_units': {'1' : '5 - 24', '2' : '25-50', '3' : '51-99', '4' : '100-149',
+                      '5' : '> 149', '9' : 'NaN'}
     }
 
 unit_data_dict = {
     'enterprise_flag': {'1':'fannie', '2':'freddie'},
-    'num_bedrooms': {'1': '0-1 bedroom', '2':'2 or more bedrooms'},
+    'num_bedrooms': {'1': '0-1', '2':'>=2'},
     'affordability_level': {'1' :  '>=0, <=50%', '2' :  '>50, <=60%', '3' :  '>60, <=80%',
-                            '4' :  '>80, <=100%', '5' :  '>100% ', '9' :  'Not available'},
-    'tenant_income_ind': {'0' : 'No or Not provided', '1' : 'Yes'}
+                            '4' :  '>80, <=100%', '5' :  '>100% ', '9' :  'NaN'},
+    'tenant_income_ind': {'0' : 'No', '1' : 'Yes'}
     }
 
 loan_data_mapper = {

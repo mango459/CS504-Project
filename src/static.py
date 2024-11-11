@@ -1,4 +1,4 @@
-"""This module defines static variables that may change from user to user. Define these here and do
+'''This module defines static variables that may change from user to user. Define these here and do
 not push your changes. This file should be inlcuded in the .gitignore for the repos.
 
 For example:
@@ -8,6 +8,6 @@ For example:
     to continually modify the actual code, you just modify it here and then import this variable to
     the subsequent scripts.
 
-DONT PUSH THIS FILE ONCE YOU'VE FILLED IT OUT, ITS ON THE GITIGNORE BUT BE VIGILANT"""
+DONT PUSH THIS FILE ONCE YOU'VE FILLED IT OUT, ITS ON THE GITIGNORE BUT BE VIGILANT'''
 
-DATA_DIR: str = ""
+DATA_DIR: str = "/home/mango/data/CS504"
