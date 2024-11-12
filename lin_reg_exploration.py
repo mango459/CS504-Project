@@ -38,7 +38,7 @@ df.tail()
 
 # Update target variable to 'tract_income_ratio'
 target_variable = 'tract_income_ratio'
-independent_variables = ['num_bedrooms', 'num_units', 'tract_income_ratio', #<- data leakage here in target variables
+independent_variables = ['num_bedrooms', 'num_units', 'tract_income_ratio', #<- data leakage here in dependent variables
                           'tot_num_units']
 
 # Check the correlation between the target variable and independent variables
