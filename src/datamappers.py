@@ -8,8 +8,8 @@ unit_column_mapper = {0: 'enterprise_flag', 1: 'record_number', 2: 'num_bedrooms
 
 loan_data_dict = {
     'enterprise_flag': {'1':'fannie', '2':'freddie'},
-    'census_tract_2020': {'1': '<10%', '2': '>=10%, <30%', '3':'>=30% <100%', '4':'missing'},
-    'tract_income_ratio': {'1': '>0, <=80%', '2': '>10, <=120%', '3': '>120%', '4': 'missing'},
+    'census_tract_2020': {'1': '<10%', '2': '>=10%, <30%', '3':'>=30% <100%', '9':'NaN'},
+    'tract_income_ratio': {'1': '>0, <=80%', '2': '>10, <=120%', '3': '>120%', '9': 'NaN'},
     'affordability_cat': {'1' :  '>=20%, <40%',
                           '2' : '<20%, >=40%',
                           '3' : '>=20%, >=40%',
