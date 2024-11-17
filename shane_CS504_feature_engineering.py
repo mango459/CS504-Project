@@ -22,7 +22,7 @@ df = pd.get_dummies(mapped_data, columns=['num_bedrooms', 'affordability_level']
 df.columns = df.columns.str.strip()
 
 # define a helper function
-def unit_count_transformer(df: pd.core.frame.DataFrame, cols=list[str]) -> pd.core.DataFrame:
+def unit_count_transformer(df: pd.DataFrame, cols=list[str]) -> pd.DataFrame:
     '''
     map unit counts to certain columns. needs at least one column named `num_units` which is the
         target of the transformation. i.e., values from `num_units` are mapped to columns in `cols`
@@ -53,7 +53,7 @@ df = unit_count_transformer(
 df = df.groupby(
     # define grouping columns for record grouping
     ['year', 'enterprise_flag', 'record_number', 'census_tract_2020', 'tract_income_ratio',
-     'date_of_morgage_note', 'purpose_of_loan', 'type_of_seller', 'federal_guarantee',
+     'date_of_mortgage_note', 'purpose_of_loan', 'type_of_seller', 'federal_guarantee',
      'tenant_income_ind', 'affordability_cat', 'tot_num_units']
     # this next step identifies which columns we're going to sum up
     )[['num_units', 'num_bedrooms_0-1', 'num_bedrooms_>=2', 'affordability_level_>100%',
@@ -71,6 +71,9 @@ df = pd.get_dummies(
              'affordability_cat', 'tot_num_units'],
     drop_first=True
     )
+
+# create simple flag to tell the model about covid
+df['after_covid_ind'] = df.year >= 2020
 
 # save engineered data
 df.to_csv(f'{DATA_DIR}/preprocessed_data.csv')
