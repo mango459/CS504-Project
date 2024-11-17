@@ -76,5 +76,5 @@ df = pd.get_dummies(
 df['after_covid_ind'] = df.year >= 2020
 
 # save engineered data
-df.to_csv(f'{DATA_DIR}/preprocessed_data.csv')
+df.to_csv(f'{DATA_DIR}/preprocessed_data.csv', index=False)
 ## End script
