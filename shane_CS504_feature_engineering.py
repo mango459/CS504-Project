@@ -66,14 +66,32 @@ print('Data aggregation yields a DataFrame containing aggregate counts of certai
 # finally prepare remaining categorical columns for modeling by finishing one hot encoding
 df = pd.get_dummies(
     df,
-    columns=['census_tract_2020', 'tract_income_ratio', 'date_of_mortgage_note',
+    columns=['enterprise_flag', # 'census_tract_2020', # commented out to leave as a categorical for testing ordinal regressors.
+            #  'tract_income_ratio',
+             'date_of_mortgage_note',
              'purpose_of_loan', 'type_of_seller', 'federal_guarantee', 'tenant_income_ind',
-             'affordability_cat', 'tot_num_units'],
-    drop_first=True
+             # 'affordability_cat', # commented out to leave as a categorical for testing ordinal regressors.
+             'tot_num_units']
     )
+
+census_tract_2020 = {'<10%': '1', '>=10%, <30%': '2', '>=30% <100%': '3', 'NaN': '9'}
+affordability_cat = {'>=20%, <40%': '1', '<20%, >=40%': '2', '>=20%, >=40%': '3',
+                      '<20%, <40%': '4'}
+tract_income_ratio, = {'>0, <=80%': '1', '>10, <=120%': '2', '>120%': '3'},
+
+# remap ordinal values over the string values for modeling
+df.census_tract_2020 = df.census_tract_2020.map(lambda x: census_tract_2020.get(x))
+df.affordability_cat = df.affordability_cat.map(lambda x: affordability_cat.get(x))
+df.tract_income_ratio = df.tract_income_ratio.map(lambda x: tract_income_ratio.get(x))
 
 # create simple flag to tell the model about covid
 df['after_covid_ind'] = df.year >= 2020
+df.columns = df.columns.str.strip().str.replace(' - ', '-')
+
+# create simple count of number of affordable units so that a predictor can predict the number of
+# affordabile units based on other inputs.
+df['num_affordable_units'] = df[['affordability_level_>=0, <=50%', 'affordability_level_>50, <=60%',
+                                 'affordability_level_>60, <=80%']].sum(axis=1)
 
 # save engineered data
 df.to_csv(f'{DATA_DIR}/preprocessed_data.csv', index=False)
