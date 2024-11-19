@@ -13,7 +13,7 @@ from src.static import DATA_DIR
 # read in data
 mapped_data = pd.read_csv(f'{DATA_DIR}/mapped_data.csv', na_values = ['.', 'NaN', 'None'])
 mapped_data.sort_values(by = ['year', 'enterprise_flag', 'record_number'], inplace = True)
-mapped_data = mapped_data[mapped_data.year >= (2023 - 5)]
+mapped_data = mapped_data[mapped_data.year > (2023 - 5)]
 
 # one hot encode certain columns
 df = pd.get_dummies(mapped_data, columns=['num_bedrooms', 'affordability_level'])
@@ -30,7 +30,7 @@ def unit_count_transformer(df: pd.DataFrame, cols=list[str]) -> pd.DataFrame:
     arguments:
         df: a dataframe of data needing to be transformed
         cols: a list of specific column names that need to be worked on
-    returns: 
+    returns:
         a transformed dataframe
     '''
     # first create a copy so we arent working on the input dataframe
