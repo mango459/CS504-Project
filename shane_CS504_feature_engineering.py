@@ -16,7 +16,9 @@ mapped_data.sort_values(by = ['year', 'enterprise_flag', 'record_number'], inpla
 mapped_data = mapped_data[mapped_data.year > (2023 - 5)]
 
 # one hot encode certain columns
-df = pd.get_dummies(mapped_data, columns=['num_bedrooms', 'affordability_level'])
+df = pd.get_dummies(
+    mapped_data, columns=['num_bedrooms', 'affordability_level']
+    )
 
 # refine column names
 df.columns = df.columns.str.strip()
@@ -66,23 +68,24 @@ print('Data aggregation yields a DataFrame containing aggregate counts of certai
 # finally prepare remaining categorical columns for modeling by finishing one hot encoding
 df = pd.get_dummies(
     df,
-    columns=['enterprise_flag', # 'census_tract_2020', # commented out to leave as a categorical for testing ordinal regressors.
-            #  'tract_income_ratio',
+    columns=['enterprise_flag', 'census_tract_2020', # commented out to leave as a categorical for testing ordinal regressors.
+             'tract_income_ratio',
              'date_of_mortgage_note',
              'purpose_of_loan', 'type_of_seller', 'federal_guarantee', 'tenant_income_ind',
-             # 'affordability_cat', # commented out to leave as a categorical for testing ordinal regressors.
-             'tot_num_units']
+             'affordability_cat', # commented out to leave as a categorical for testing ordinal regressors.
+             'tot_num_units'],
+    drop_first = True # dropping the final category so that one hot encoded variables to not perfectly multicorrelate
     )
 
-census_tract_2020 = {'<10%': '1', '>=10%, <30%': '2', '>=30% <100%': '3', 'NaN': '9'}
-affordability_cat = {'>=20%, <40%': '1', '<20%, >=40%': '2', '>=20%, >=40%': '3',
-                      '<20%, <40%': '4'}
-tract_income_ratio, = {'>0, <=80%': '1', '>10, <=120%': '2', '>120%': '3'},
+# census_tract_2020 = {'<10%': '1', '>=10%, <30%': '2', '>=30% <100%': '3', 'NaN': '9'}
+# affordability_cat = {'>=20%, <40%': '1', '<20%, >=40%': '2', '>=20%, >=40%': '3',
+#                       '<20%, <40%': '4'}
+# tract_income_ratio, = {'>0, <=80%': '1', '>10, <=120%': '2', '>120%': '3'},
 
-# remap ordinal values over the string values for modeling
-df.census_tract_2020 = df.census_tract_2020.map(lambda x: census_tract_2020.get(x))
-df.affordability_cat = df.affordability_cat.map(lambda x: affordability_cat.get(x))
-df.tract_income_ratio = df.tract_income_ratio.map(lambda x: tract_income_ratio.get(x))
+# # remap ordinal values over the string values for modeling
+# df.census_tract_2020 = df.census_tract_2020.map(lambda x: census_tract_2020.get(x))
+# df.affordability_cat = df.affordability_cat.map(lambda x: affordability_cat.get(x))
+# df.tract_income_ratio = df.tract_income_ratio.map(lambda x: tract_income_ratio.get(x))
 
 # create simple flag to tell the model about covid
 df['after_covid_ind'] = df.year >= 2020
